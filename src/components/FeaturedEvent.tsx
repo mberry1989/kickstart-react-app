@@ -2,13 +2,13 @@ import { FC } from "react";
 import FeaturedComponentBase from "./FeaturedComponentBase";
 import { Event } from "../model";
 import { formatDate } from "../utils/date";
-import { browserParse, transformToPortableText } from "@kontent-ai/rich-text-resolver";
-import { PortableText } from "@portabletext/react";
-import { defaultPortableRichTextComponents } from "../utils/richtext";
+import { transformToPortableText } from "@kontent-ai/rich-text-resolver";
+import { defaultPortableRichTextResolvers } from "../utils/richtext";
 import { Replace } from "../utils/types";
 import RenderElement from "./RenderElement";
 import { contentTypes } from "../model/project";
 import { eventLink } from "../constants/links";
+import { PortableText } from "@kontent-ai/rich-text-resolver/utils/react";
 
 type FeaturedEventProps = Readonly<{
   event: Replace<Event, { elements: Partial<Event["elements"]> }>;
@@ -71,8 +71,8 @@ const FeaturedEvent: FC<FeaturedEventProps> = ({ event }) => {
               children={() => (
                 <div className="mt-4">
                   <PortableText
-                    value={transformToPortableText(browserParse(event.elements.description?.value ?? ""))}
-                    components={defaultPortableRichTextComponents}
+                    value={transformToPortableText(event.elements.description?.value ?? "")}
+                    components={defaultPortableRichTextResolvers}
                   />
                 </div>
               )}
