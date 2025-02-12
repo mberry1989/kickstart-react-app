@@ -131,10 +131,10 @@ const LandingPage: FC = () => {
   return (
 <FeaturedSolution
 
-data={{
+solution={{
   headline: solution.data?.elements.headline,
-  summary: solution.data?.elements.headline,
-  image: solution.data?.elements.headline,
+  introduction: solution.data?.elements.introduction,
+  image: solution.data?.elements.image,
 
 }}
 

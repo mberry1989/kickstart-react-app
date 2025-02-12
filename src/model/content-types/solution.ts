@@ -29,5 +29,5 @@ export type Solution = IContentItem<{
      * Id: c588ca2a-5cac-47b3-897d-96995c17e1f8
      * Codename: summary
      */
-    summary: Elements.TextElement;
+    introduction: Elements.TextElement;
 }>;
