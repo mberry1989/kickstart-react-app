@@ -30,7 +30,7 @@ const FeaturedSolution: React.FC<FeaturedSolutionProps> = ({ solution }) => {
           </RenderElement>
           <RenderElement
             element={solution.elements.summary}
-            elementCodename="summary"
+            elementCodename="introduction"
             requiredElementType="text"
             typeCodename={contentTypes.solution.codename}
             link={articleLink}
