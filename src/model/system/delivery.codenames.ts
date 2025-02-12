@@ -21,7 +21,7 @@ export type LanguageCodenames = 'default';
 /**
  * Type representing all content types
  */
-export type ContentTypeCodenames = 'article' | 'video' | 'landing_page' | 'event';
+export type ContentTypeCodenames = 'article' | 'video' | 'landing_page' | 'event' | "solution";
 
 /**
  * Type representing all collections

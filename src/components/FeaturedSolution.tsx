@@ -1,12 +1,13 @@
 import React from "react";
 import FeaturedComponentBase from "./FeaturedComponentBase";
-import {Solution } from "../model";
+import { Solution } from "../model";
 import { Replace } from "../utils/types";
 import RenderElement from "./RenderElement";
 import { contentTypes } from "../model/project";
+import { articleLink } from "../constants/links";
 
 type FeaturedSolutionProps = Readonly<{
-  article: Replace<Solution, { elements: Partial<Solution["elements"]> }>;
+  solution: Replace<Solution, { elements: Partial<Solution["elements"]> }>;
 }>;
 
 const FeaturedSolution: React.FC<FeaturedSolutionProps> = ({ solution }) => {
@@ -21,6 +22,7 @@ const FeaturedSolution: React.FC<FeaturedSolutionProps> = ({ solution }) => {
             elementCodename="headline"
             requiredElementType="text"
             typeCodename={contentTypes.solution.codename}
+            link={articleLink}
           >
             <h2 className="text-center xl:text-left text-5xl font-semibold text-burgundy">
               {solution.elements.headline?.value}
@@ -31,6 +33,7 @@ const FeaturedSolution: React.FC<FeaturedSolutionProps> = ({ solution }) => {
             elementCodename="summary"
             requiredElementType="text"
             typeCodename={contentTypes.solution.codename}
+            link={articleLink}
           >
             <p className="text-center xl:text-left text-gray-700 mt-4 text-xl">
               {solution.elements.summary?.value}

@@ -1,6 +1,6 @@
 import { Elements } from "@kontent-ai/delivery-sdk";
 import type { FC, ReactNode } from "react";
-import { ContentTypeCodenames, ElementCodenames } from "../model";
+import { ContentTypeCodenames, ElementCodenames } from "../model/system";
 import KontentComponentErrorMessage from "./KontentComponentErrorMessage";
 
 type AllElementsUnion =
