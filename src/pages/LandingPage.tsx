@@ -16,9 +16,33 @@ import { contentTypes } from "../model/project";
 import KontentComponentErrorMessage from "../components/KontentComponentErrorMessage";
 import Layout from "../components/Layout";
 import { landingPageLink } from "../constants/links";
+import { Solution } from "../model";
+import FeaturedSolution from "../components/FeaturedSolution";
 
 const LandingPage: FC = () => {
   const { environmentId, apiKey } = useAppContext();
+
+  const solutions = useSuspenseQueries({
+    queries: [
+    {
+      queryKey: ["solutions"],
+      queryFn: () =>
+        createClient(environmentId, apiKey)
+          .items()
+          .type(contentTypes.solution.codename)
+          .toPromise()
+          .then(res =>
+            res.data.items[0] as Replace<Solution, { elements: Partial<Solution["elements"]> }> ?? null
+          )
+          .catch((err) => {
+            if (err instanceof DeliveryError) {
+              return null;
+            }
+            throw err;
+          }),
+        },
+      ],
+    });
 
   const [landingPageType, landingPage] = useSuspenseQueries({
     queries: [
@@ -101,6 +125,23 @@ const LandingPage: FC = () => {
             }}
           />
         </PageSection>
+        <PageSection color="bg-white">
+
+{solutions && solutions.map(solution => {
+  return (
+<FeaturedSolution
+
+data={{
+  headline: solution.data?.elements.headline,
+  summary: solution.data?.elements.headline,
+  image: solution.data?.elements.headline,
+
+}}
+
+/>
+  )
+})}
+</PageSection>
         <RenderElement
           element={landingPage.data.elements.body_copy}
           elementCodename="body_copy"
