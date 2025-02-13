@@ -4,7 +4,7 @@ import HeroImage from "../components/HeroImage";
 import PageContent from "../components/PageContent";
 import PageSection from "../components/PageSection";
 import "../index.css";
-import { type LandingPage } from "../model";
+import { Solution, type LandingPage } from "../model";
 import { createClient } from "../utils/client";
 import { useSuspenseQueries } from "@tanstack/react-query";
 import { FC } from "react";
@@ -16,8 +16,7 @@ import { contentTypes } from "../model/project";
 import KontentComponentErrorMessage from "../components/KontentComponentErrorMessage";
 import Layout from "../components/Layout";
 import { landingPageLink } from "../constants/links";
-import { Solution } from "../model";
-import SolutionList from "../components/SolutionList";
+import SolutionListItem from "../components/SolutionListItem";
 
 const LandingPage: FC = () => {
   const { environmentId, apiKey } = useAppContext();
@@ -31,8 +30,9 @@ const LandingPage: FC = () => {
           .items()
           .type(contentTypes.solution.codename)
           .toPromise()
-          .then(res =>
-            res.data.items[0] as Replace<Solution, { elements: Partial<Solution["elements"]> }> ?? null
+          .then(res => 
+            //res.data.items[0] as Replace<Solution, { elements: Partial<Solution["elements"]> }> ?? null
+            res.data.items as Array<Solution> ?? null
           )
           .catch((err) => {
             if (err instanceof DeliveryError) {
@@ -81,6 +81,8 @@ const LandingPage: FC = () => {
     ],
   });
 
+  console.log(solutions[0].data)
+
   if (!landingPageType.data) {
     return (
       <Layout>
@@ -113,6 +115,8 @@ const LandingPage: FC = () => {
     );
   }
 
+  console.log(solutions)
+
   return (
     <Layout>
       <div className="flex-grow">
@@ -126,20 +130,21 @@ const LandingPage: FC = () => {
           />
         </PageSection>
         <PageSection color="bg-white">
-
-{solutions && solutions.map(solution => {
-  return (
-    <SolutionList
-    solution={{
-      headline: solution.data?.elements.headline,
-      introduction: solution.data?.elements.introduction,
-      image: solution.data?.elements.image,
-
-    }}
-/>
-  )
-})}
-</PageSection>
+          <h2 className="text-azure text-[40px] md:text-[64px] leading-[54px] w-full p-8 text-center">
+            Solutions Tailored to You
+          </h2>
+          {solutions[0] && solutions[0].data.map(solution => {
+            return (
+              <SolutionListItem
+              solution={{
+                headline: solution.elements.headline,
+                introduction: solution.elements.introduction,
+                image: solution.elements.image
+              }}
+          />
+            )
+          })}
+        </PageSection>
         <RenderElement
           element={landingPage.data.elements.body_copy}
           elementCodename="body_copy"
