@@ -69,7 +69,7 @@ const FeaturedEvent: FC<FeaturedEventProps> = ({ event }) => {
               typeCodename={contentTypes.event.codename}
               link={eventLink}
               children={() => (
-                <div className="mt-4">
+                <div className="mt-4 text-left">
                   <PortableText
                     value={transformToPortableText(event.elements.description?.value ?? "")}
                     components={defaultPortableRichTextResolvers}
