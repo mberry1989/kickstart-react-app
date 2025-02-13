@@ -115,8 +115,6 @@ const LandingPage: FC = () => {
     );
   }
 
-  console.log(solutions)
-
   return (
     <Layout>
       <div className="flex-grow">
@@ -165,6 +163,9 @@ const LandingPage: FC = () => {
           typeCodename={contentTypes.landing_page.codename}
           link={landingPageLink}
         >
+              <h2 className="text-azure text-[40px] md:text-[64px] leading-[54px] text-center">
+      Featured Content
+    </h2>
           <FeaturedContent featuredContent={landingPage.data.elements.featured_content!}></FeaturedContent>
         </RenderElement>
       </div>
