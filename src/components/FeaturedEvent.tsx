@@ -35,7 +35,7 @@ const FeaturedEvent: FC<FeaturedEventProps> = ({ event }) => {
               link={eventLink}
               typeCodename={contentTypes.event.codename}
             >
-              <h2 className="text-center xl:text-left text-5xl font-semibold text-burgundy">
+              <h2 className="text-left xl:text-left text-5xl font-semibold text-burgundy">
                 {event.elements.name?.value}
               </h2>
             </RenderElement>
@@ -46,7 +46,7 @@ const FeaturedEvent: FC<FeaturedEventProps> = ({ event }) => {
               link={eventLink}
               typeCodename={contentTypes.event.codename}
             >
-              <p className="text-center xl:text-left text-gray-light mt-6 text-lg">
+              <p className="text-left xl:text-left text-gray-light mt-6 text-lg">
                 {`${
                   event.elements.start_date?.value?.length
                     ? formatDate(event.elements.start_date?.value as string)
@@ -80,7 +80,7 @@ const FeaturedEvent: FC<FeaturedEventProps> = ({ event }) => {
             </RenderElement>
           </div>
           {event.elements.description?.value !== "<p><br></p>" && (
-            <a href="#" className="text-center xl:text-left text-burgundy text-xl mt-6 font-semibold underline">
+            <a href="#" className="text-left xl:text-left text-burgundy text-xl mt-6 font-semibold underline">
               Read more
             </a>
           )}

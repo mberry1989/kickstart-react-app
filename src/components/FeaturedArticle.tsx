@@ -24,7 +24,7 @@ const FeaturedArticle: React.FC<FeaturedArticleProps> = ({ article }) => {
             typeCodename={contentTypes.article.codename}
             link={articleLink}
           >
-            <h2 className="text-center xl:text-left text-5xl font-semibold text-burgundy">
+            <h2 className="text-left xl:text-left text-5xl font-semibold text-burgundy">
               {article.elements.title?.value}
             </h2>
           </RenderElement>
@@ -35,7 +35,7 @@ const FeaturedArticle: React.FC<FeaturedArticleProps> = ({ article }) => {
             typeCodename={contentTypes.article.codename}
             link={articleLink}
           >
-            <p className="text-center xl:text-left text-gray-light mt-6 text-lg">
+            <p className="text-left xl:text-left text-gray-light mt-6 text-lg">
               {article.elements.publish_date?.value
                 && `Published on ${
                   new Date(article.elements.publish_date.value!).toLocaleDateString("en-US", {
@@ -53,12 +53,12 @@ const FeaturedArticle: React.FC<FeaturedArticleProps> = ({ article }) => {
             typeCodename={contentTypes.article.codename}
             link={articleLink}
           >
-            <p className="text-center xl:text-left text-gray-700 mt-4 text-xl">
+            <p className="text-left xl:text-left text-gray-700 mt-4 text-xl">
               {article.elements.introduction?.value}
             </p>
           </RenderElement>
         </div>
-        <a href="#" className="text-center xl:text-left text-burgundy text-xl mt-6 font-semibold underline">
+        <a href="#" className="text-left xl:text-left text-burgundy text-xl mt-6 font-semibold underline">
           Read more
         </a>
       </>
