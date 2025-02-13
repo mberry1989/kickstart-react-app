@@ -1,11 +1,10 @@
 import React from "react";
-// import FeaturedComponentBase from "./FeaturedComponentBase";
 import RenderElement from "./RenderElement";
 import { contentTypes } from "../model/project";
 import { articleLink } from "../constants/links";
 import { Elements } from "@kontent-ai/delivery-sdk";
 
-type FeaturedSolutionProps = Readonly<{
+type SolutionListProps = Readonly<{
   solution: {
     headline?: Elements.TextElement;
     introduction?: Elements.TextElement;
@@ -13,12 +12,32 @@ type FeaturedSolutionProps = Readonly<{
   };
 }>;
 
-const FeaturedSolution: React.FC<FeaturedSolutionProps> = ({ solution }) => {
+const SolutionList: React.FC<SolutionListProps> = ({ solution }) => {
   const shouldRender = Object.entries(solution).length > 0;
 
   return shouldRender && (
-    // <FeaturedComponentBase type="solution" image={solution.elements?.image}>
       <>
+      <div className="basis-1/3">
+        <RenderElement
+          element={solution.image}
+          elementCodename="image"
+          requiredElementType="asset"
+          typeCodename={contentTypes.solution.codename }
+          link={articleLink}
+        >
+          {solution.image && (
+            <>
+              <img
+                width={640}
+                height={420}
+                src={solution.image.value[0]?.url ? `${solution.image.value[0]?.url}?auto=format&w=800` : ""}
+                alt={solution.image.value[0].description ?? "image alt"}
+                className="object-cover rounded-lg static"
+              />
+            </>
+          )}
+        </RenderElement>
+      </div>
         <div>
           <RenderElement
             element={solution.headline}
@@ -47,8 +66,7 @@ const FeaturedSolution: React.FC<FeaturedSolutionProps> = ({ solution }) => {
           Read more
         </a>
       </>
-    // </FeaturedComponentBase>
   );
 };
 
-export default FeaturedSolution;
+export default SolutionList;

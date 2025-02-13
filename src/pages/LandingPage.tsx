@@ -17,7 +17,7 @@ import KontentComponentErrorMessage from "../components/KontentComponentErrorMes
 import Layout from "../components/Layout";
 import { landingPageLink } from "../constants/links";
 import { Solution } from "../model";
-import FeaturedSolution from "../components/FeaturedSolution";
+import SolutionList from "../components/SolutionList";
 
 const LandingPage: FC = () => {
   const { environmentId, apiKey } = useAppContext();
@@ -129,15 +129,13 @@ const LandingPage: FC = () => {
 
 {solutions && solutions.map(solution => {
   return (
-<FeaturedSolution
+    <SolutionList
+    solution={{
+      headline: solution.data?.elements.headline,
+      introduction: solution.data?.elements.introduction,
+      image: solution.data?.elements.image,
 
-solution={{
-  headline: solution.data?.elements.headline,
-  introduction: solution.data?.elements.introduction,
-  image: solution.data?.elements.image,
-
-}}
-
+    }}
 />
   )
 })}
